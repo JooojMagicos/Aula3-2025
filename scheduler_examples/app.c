@@ -15,6 +15,7 @@
  * Run like: ./app <name> <time_s>
  */
 int main(int argc, char *argv[]) {
+
     if (argc != 3) {
         printf("Usage: %s <name> <time_s>\n", argv[0]);
         exit(EXIT_FAILURE);
@@ -25,6 +26,7 @@ int main(int argc, char *argv[]) {
     char *endptr;
     errno = 0;
     long val = strtol(argv[2], &endptr, 10);
+
     if (errno != 0) {
         perror("strtol");  // conversion error (overflow, etc.)
         return 1;
@@ -37,6 +39,7 @@ int main(int argc, char *argv[]) {
         fprintf(stderr, "Value out of range: %ld\n", val);
         return 1;
     }
+
     int32_t time_s = (int32_t) val;
 
     // Setup socket for communication
