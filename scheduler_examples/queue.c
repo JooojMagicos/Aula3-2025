@@ -34,7 +34,10 @@ int enqueue_pcb(queue_t* q, pcb_t* task) {
 }
 
 pcb_t* dequeue_pcb(queue_t* q) {
-    if (!q || !q->head) return NULL;
+    if (!q || !q->head) {
+        printf("DEBUG: dequeue_pcb - queue empty\n");
+        return NULL;
+    }
 
     queue_elem_t* node = q->head;
     pcb_t* task = node->pcb;
@@ -43,6 +46,7 @@ pcb_t* dequeue_pcb(queue_t* q) {
     if (!q->head)
         q->tail = NULL;
 
+    printf("DEBUG: dequeue_pcb - PID=%d\n", task->pid);
     free(node);
     return task;
 }

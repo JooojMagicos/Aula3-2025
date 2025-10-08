@@ -6,6 +6,8 @@
 #include <string.h>
 #include "sjf.h"
 #include "debug.h"
+#include "RR.h"
+
 
 #define MAX_CLIENTS 128
 
@@ -275,6 +277,9 @@ int main(int argc, char *argv[]) {
                 break;
             case SCHED_SJF:
                 sjf_scheduler(current_time_ms, (queue_t *)ready_ptr, &CPU);
+                break;
+            case SCHED_RR:
+                rr_scheduler(current_time_ms, (queue_t *)ready_ptr, &CPU);
                 break;
             case SCHED_MLFQ:
                 mlfq_scheduler(current_time_ms, (mlfq_ready_t *)ready_ptr, &CPU);
